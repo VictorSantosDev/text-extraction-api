@@ -6,4 +6,4 @@ exampleController = ExampleController()
 
 example_routes = Blueprint("examples", __name__)
 
-example_routes.get("/examples")(exampleController.example_method)
+example_routes.post("/examples")(exampleController.example_method)

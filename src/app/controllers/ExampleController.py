@@ -1,4 +1,4 @@
-from flask import request, jsonify
+from flask import request
 from app.services.ExampleService import ExampleService
 
 class ExampleController:
@@ -8,13 +8,17 @@ class ExampleController:
 
     # Crie um controlador onde define a chamada para service e retorno da resposta.
     def example_method(self):
-        example = self.exampleService.example_method_service()
 
-        return jsonify(
-            {
-                "data": {
-                    "name": example.name,
-                    "text_file": example.text
-                }
-            }
+        
+        example_file = request.files['file']
+
+        example = self.exampleService.example_method_service(
+            example_file=example_file
         )
+
+        return {
+            "data": {
+                "name": example.name,
+                "text_file": example.text
+            }
+        }
