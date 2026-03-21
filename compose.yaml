@@ -5,6 +5,11 @@ services:
       context: .
       dockerfile: ./docker/dockerfile
     restart: always
+    environment:
+      FLASK_APP: ./src/main
+    volumes:
+      - ./src:/app/src
+      - ./migrations:/app/migrations
     ports:
       - "8081:8081"
     networks:
